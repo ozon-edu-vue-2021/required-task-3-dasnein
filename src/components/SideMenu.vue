@@ -32,7 +32,6 @@
           <span v-else class="legend--empty"> Список пуст </span>
         </div>
         <div class="legend__chart">
-          <!-- chart -->
           <Doughnut ref="chart" />
         </div>
       </div>

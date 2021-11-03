@@ -39,16 +39,12 @@ export default {
 
   methods: {
     drawTables() {
-      const svgTablesGroup = this.group
-        .append("g")
-        .classed("groupPlaces", true);
-
       this.tables.map((table) => {
-        const svgTable = svgTablesGroup
+        const svgTable = this.group
           .append("g")
           .attr("transform", `translate(${table.x} ${table.y}) scale(0.5)`)
           .attr("id", table._id)
-          .classed("employer-place", true);
+          .classed("groupPlaces employer-place", true);
 
         svgTable
           .append("g")
@@ -72,7 +68,7 @@ export default {
     if (this.group) {
       this.drawTables();
     } else {
-      console.log("ERROR");
+      console.error("Error on drawing tables");
     }
   },
 };
