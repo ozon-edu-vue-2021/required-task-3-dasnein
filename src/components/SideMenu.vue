@@ -2,12 +2,12 @@
   <div class="menu">
     <div class="toolbar">
       <div class="toolbar__header">
-        <template v-if="!isUserOpenned">
+        <template v-if="!isUserOpened">
           <h3>Информация</h3>
         </template>
         <template v-else>
-          <div class="action">
-            <div class="arrow" @click="closeProfile"></div>
+          <div class="action" @click="closeProfile">
+            <div class="arrow"></div>
           </div>
           <h3>Профиль</h3>
         </template>
@@ -15,7 +15,7 @@
       <div class="toolbar__actions"></div>
     </div>
     <div class="content">
-      <div v-if="!isUserOpenned" class="legend">
+      <div v-show="!isUserOpened" class="legend">
         <div class="legend__data">
           <div v-if="legend.length > 0" class="legend__items">
             <Draggable>
@@ -35,9 +35,8 @@
           <Doughnut ref="chart" />
         </div>
       </div>
-      <div v-else class="profile">
+      <div v-if="isUserOpened" class="profile">
         <div v-if="!person" class="profile__empty">Место пустое</div>
-
         <PersonCard :person="person" />
       </div>
     </div>
@@ -61,7 +60,7 @@ export default {
   },
 
   props: {
-    isUserOpenned: {
+    isUserOpened: {
       type: Boolean,
       default: false,
     },
@@ -82,7 +81,7 @@ export default {
       this.legend = legend;
     },
     closeProfile() {
-      this.$emit("update:isUserOpenned", false);
+      this.$emit("update:isUserOpened", false);
     },
     makeChart() {
       const chartData = {

@@ -56,7 +56,17 @@ export default {
             legend.find((group) => group.group_id === table.group_id)?.color ??
               "transparent"
           );
+
+        svgTable.on("click", this.onTableClick);
       });
+    },
+    onTableClick(e) {
+      const employeeId = e.currentTarget.getAttribute("id");
+
+      if (employeeId) {
+        e.stopPropagation();
+        this.$emit("showUserInfo", Number(employeeId));
+      }
     },
   },
 
